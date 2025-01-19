@@ -5,6 +5,7 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
 const Index = () => {
   const { user } = useAuth();
@@ -20,7 +21,7 @@ const Index = () => {
         .from("games")
         .select("*")
         .eq("status", "active")
-        .single();
+        .maybeSingle();
 
       if (error) throw error;
       return data;
@@ -153,12 +154,12 @@ const Index = () => {
             )}
           </div>
         ) : (
-          <div className="rounded-lg border p-6 bg-card text-center">
-            <h2 className="text-2xl font-semibold mb-4">No Active Game</h2>
-            <p className="text-muted-foreground">
-              Please check back later for the next game.
-            </p>
-          </div>
+          <Alert>
+            <AlertTitle>No Active Game</AlertTitle>
+            <AlertDescription>
+              There is currently no active game. Please check back later for the next game.
+            </AlertDescription>
+          </Alert>
         )}
       </div>
     </div>
