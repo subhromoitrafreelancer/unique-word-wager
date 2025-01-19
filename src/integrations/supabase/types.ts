@@ -9,6 +9,80 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      entries: {
+        Row: {
+          answer: string
+          created_at: string
+          game_id: string | null
+          id: string
+          is_approved: boolean | null
+          is_unique: boolean | null
+          user_id: string | null
+        }
+        Insert: {
+          answer: string
+          created_at?: string
+          game_id?: string | null
+          id?: string
+          is_approved?: boolean | null
+          is_unique?: boolean | null
+          user_id?: string | null
+        }
+        Update: {
+          answer?: string
+          created_at?: string
+          game_id?: string | null
+          id?: string
+          is_approved?: boolean | null
+          is_unique?: boolean | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "entries_game_id_fkey"
+            columns: ["game_id"]
+            isOneToOne: false
+            referencedRelation: "games"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      games: {
+        Row: {
+          common_answers: string[]
+          created_at: string
+          end_time: string
+          id: string
+          prize_pool: number
+          question: string
+          start_time: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          common_answers?: string[]
+          created_at?: string
+          end_time: string
+          id?: string
+          prize_pool?: number
+          question: string
+          start_time?: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          common_answers?: string[]
+          created_at?: string
+          end_time?: string
+          id?: string
+          prize_pool?: number
+          question?: string
+          start_time?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           balance: number
