@@ -6,6 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { GameHistory } from "@/components/GameHistory";
 
 const Index = () => {
   const { user } = useAuth();
@@ -161,6 +162,8 @@ const Index = () => {
             </AlertDescription>
           </Alert>
         )}
+
+        <GameHistory />
       </div>
     </div>
   );
